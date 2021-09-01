@@ -1,4 +1,5 @@
 import { audio } from "./audio.js";
+import { formatError } from "./utils.js"
 
 let result = document.getElementById('timer__result');
 let startTimer = document.getElementById('startTimer');
@@ -11,28 +12,32 @@ let timerID;
 
 export function timer(){
     count = parseInt(document.getElementById('inputTime').value);
-    if (count != 0 && !isNaN(count)) {
-        timerID = setInterval(() => {
-            if (count == 0) {
-                clearInterval(timerID);
-                endWorkTimer();
-            } else {
-                --count;
-                result.innerHTML = `Осталось :  ${count} секунд`;
-            }
-        
-        }, 1000);
-    } else {
-        result.innerHTML = formatError("Необходимо ввести число больше нуля");
-    }
+    startTimer.setAttribute('disabled', true);
+        if (count != 0 && !isNaN(count)) {
+            timerID = setInterval(() => {
+                if (count == 0) {                    
+                    endWorkTimer();
+                } else {
+                    --count;
+                    result.innerHTML = `Осталось :  ${count} секунд`;
+                }
+            
+            }, 1000);
+        } else {
+            result.innerHTML = formatError("Необходимо ввести число больше нуля");
+        }
 }
     
   function stoptimer(){
-    clearInterval(timerID);
+      clearInterval(timerID);
+      startTimer.removeAttribute('disabled');
+      result.innerHTML = `Таймер сброшен`;
 }
 
-function endWorkTimer(){
-    result.innerHTML = `Таймер закончил работу!!!`;
+function endWorkTimer() {
+    clearInterval(timerID);
     audio();
+    result.innerHTML = `Таймер закончил работу!!!`;
+    startTimer.removeAttribute('disabled');
 }
   
