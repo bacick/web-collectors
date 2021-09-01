@@ -32,7 +32,7 @@ export function timer(){
 }
 
 function endWorkTimer(){
-    result.innerHTML = `Таймер закончил работу!`;
+    result.innerHTML = `Таймер закончил работу!!!`;
     audio();
 }
   
