@@ -12,8 +12,9 @@ let timerID;
 
 export function timer(){
     count = parseInt(document.getElementById('inputTime').value);
-    startTimer.setAttribute('disabled', true);
-        if (count != 0 && !isNaN(count)) {
+    
+    if (count != 0 && !isNaN(count)) {
+        startTimer.setAttribute('disabled', true);
             timerID = setInterval(() => {
                 if (count == 0) {                    
                     endWorkTimer();

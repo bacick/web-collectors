@@ -1,4 +1,6 @@
-let audioTimer = new Audio("./media/rick_and_morty_sun.mp3");
+const sound = require("../media/rickandmortysun.mp3");
+
+let audioTimer = new Audio(sound);
 
 export function audio() {
     audioTimer.play();
